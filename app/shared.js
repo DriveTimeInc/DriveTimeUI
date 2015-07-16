@@ -4,6 +4,7 @@ define(["require", "exports"], function (require, exports) {
         function logger() {
         }
         logger.log = function (message) {
+            // making a change
             console.log(message);
         };
         return logger;
