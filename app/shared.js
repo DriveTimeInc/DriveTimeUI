@@ -4,6 +4,7 @@ define(["require", "exports"], function (require, exports) {
         function logger() {
         }
         logger.log = function (message) {
+            // we need a change here so the deploy doesnt fail
             console.log(message);
         };
         return logger;
