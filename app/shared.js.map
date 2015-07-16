@@ -1,0 +1,1 @@
+{"version":3,"sources":["src/app/shared.ts"],"names":["logger","logger.constructor","logger.log"],"mappings":"AAAC,+FAA+F;;IAGhG,IAAa,MAAM;QAEfA,SAFSA,MAAMA;QAECC,CAACA;QAEVD,UAAGA,GAAVA,UAAWA,OAAOA;YACdE,OAAOA,CAACA,GAAGA,CAACA,OAAOA,CAACA,CAAAA;QACxBA,CAACA;QACLF,aAACA;IAADA,CAPA,IAOC;IAPY,cAAM,GAAN,MAOZ,CAAA","file":"src/app/shared.js","sourceRoot":"/src"}
