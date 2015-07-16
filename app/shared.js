@@ -5,7 +5,6 @@ define(["require", "exports"], function (require, exports) {
         }
         logger.log = function (message) {
             console.log(message);
-            console.log("hello world");
         };
         return logger;
     })();
