@@ -14,7 +14,11 @@
         "zeroclipboard": "~2.1.6",
         "moment": "~2.8.3",
         "knockout.punches": "~0.5.0",
-        "knockout-validation": "~1.0.2"
+        "knockout-validation": "~1.0.2",
+        "datatables": "1.10.7",
+        "datatables-bootstrap3": "https://github.com/mike-dempster/Datatables-Bootstrap3/archive/0.2.0.zip",
+        "datatables-responsive": "1.0.6",
+        "datatables-tabletools": "2.2.4"
     },
     "devDependencies": { 
         "requirejs": "~2.1.11"

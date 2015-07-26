@@ -2,7 +2,8 @@
 /// <amd-dependency path="bootstrap" />
 /// <amd-dependency path="knockout-validation" />
 /// <amd-dependency path="bindingHandlers/debugger" />
-define(["require", "exports", "components/debug/debug", "knockout", "knockout.punches", "bootstrap", "knockout-validation", "bindingHandlers/debugger"], function (require, exports, debugComponent, ko) {
+/// <amd-dependency path="bindingHandlers/dataTable" />
+define(["require", "exports", "components/debug/debug", "knockout", "knockout.punches", "bootstrap", "knockout-validation", "bindingHandlers/debugger", "bindingHandlers/dataTable"], function (require, exports, debugComponent, ko) {
     // [Scaffolded component registrations will be inserted here. To retain this feature, don't remove this comment.]
     ko.components.register('sprite-dump', { require: 'components/sprite-dump/sprite-dump' });
     ko.components.register('references-page', { require: 'components/references-page/references-page' });
