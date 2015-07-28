@@ -61,9 +61,7 @@ define(["require", "exports", "knockout", "crossroads", "hasher"], function (req
             why.setHash(hash);
         };
         // Activate crossroads
-        function parseHash(newHash, oldHash) {
-            crossroads.parse(newHash);
-        }
+        function parseHash(newHash, oldHash) { crossroads.parse(newHash); }
         crossroads.normalizeFn = crossroads.NORM_AS_OBJECT;
         hasher.initialized.add(parseHash);
         hasher.changed.add(parseHash);

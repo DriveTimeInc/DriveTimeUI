@@ -53,9 +53,7 @@ define(["require", "exports", "jquery", "knockout", "datatables", "datatables-bo
             // Register the row template to be used with the DataTable.
             if (binding.rowTemplate && binding.rowTemplate !== '') {
                 // Intercept the fnRowCallback function.
-                options.fnRowCallback = cog.utils.intercept(options.fnRowCallback || (function (row) {
-                    return row;
-                }), function (row, data, displayIndex, displayIndexFull, next) {
+                options.fnRowCallback = cog.utils.intercept(options.fnRowCallback || (function (row) { return row; }), function (row, data, displayIndex, displayIndexFull, next) {
                     // Render the row template for this row.
                     ko.renderTemplate(rowTemplate, bindingContext.createChildContext(data), null, row, "replaceChildren");
                     return next(row, data, displayIndex, displayIndexFull);
@@ -120,9 +118,7 @@ define(["require", "exports", "jquery", "knockout", "datatables", "datatables-bo
                             // DataTables to fire it's draw callbacks with the table's rows in their original state.  Calling
                             // this any earlier will modify the tables rows, which may cause issues with third party plugins that 
                             // use the data table.
-                            ko.utils.arrayForEach(tableRows, function (tableRow) {
-                                ko.cleanNode(tableRow);
-                            });
+                            ko.utils.arrayForEach(tableRows, function (tableRow) { ko.cleanNode(tableRow); });
                             //when using rowTemplate, must force re-draw to set correct bindings
                             dataTable.api().draw();
                         });
@@ -136,9 +132,7 @@ define(["require", "exports", "jquery", "knockout", "datatables", "datatables-bo
             // This default fnRowCallback function is called for every row in the data source.  The intention of this callback
             // is to build a table row that is bound it's associated record in the data source via knockout js.
             if (!binding.rowTemplate || binding.rowTemplate === '') {
-                options.fnRowCallback = cog.utils.intercept(options.fnRowCallback || (function (row) {
-                    return row;
-                }), function (row, srcData, displayIndex, displayIndexFull, next) {
+                options.fnRowCallback = cog.utils.intercept(options.fnRowCallback || (function (row) { return row; }), function (row, srcData, displayIndex, displayIndexFull, next) {
                     var columns = this.fnSettings().aoColumns;
                     // Empty the row that has been build by the DataTable of any child elements.
                     var destRow = $(row);
@@ -201,6 +195,7 @@ define(["require", "exports", "jquery", "knockout", "datatables", "datatables-bo
             return null;
         };
         var destOptions = { Columns: [] };
+        // Figure out how many columns in in the data table.
         for (var i = 0; i < srcOptions.length; i++) {
             if (srcOptions[i].name === "iColumns") {
                 for (var j = 0; j < srcOptions[i].value; j++) {
@@ -305,13 +300,10 @@ define(["require", "exports", "jquery", "knockout", "datatables", "datatables-bo
                 /// <returns>
                 ///     A proxy function that performs the interception.  Execute this function like you would execute the fnToExecute function.
                 /// </returns>
-                fnToIntercept = fnToIntercept || (function () {
-                });
+                fnToIntercept = fnToIntercept || (function () { });
                 return function () {
                     var newArguments = [];
-                    $.each(arguments, function (i, item) {
-                        newArguments.push(item);
-                    });
+                    $.each(arguments, function (i, item) { newArguments.push(item); });
                     newArguments.push(fnToIntercept);
                     return fnToExecute.apply(this, newArguments);
                 };
