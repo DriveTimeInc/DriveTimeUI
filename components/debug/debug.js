@@ -5,7 +5,7 @@ define(["require", "exports", "knockout", "text!./debug-html.html"], function (r
     var viewModel = (function () {
         function viewModel(params) {
             this.data = ko.observable();
-            this.data(params.data);
+            this.data(params);
         }
         return viewModel;
     })();
