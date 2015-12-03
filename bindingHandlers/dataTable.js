@@ -33,7 +33,7 @@ define(["require", "exports", "jquery", "knockout", "knockout", "knockout.mappin
             // Clone the options object found in the data bindings.  This object will form the base for the DataTable initialisation object.
             var dtopts = binding["dtoptions"];
             if (null != dtopts) {
-                var bindingOptions = ko.mapping.toJS(dtopts);
+                var bindingOptions = ko.toJS(dtopts);
                 options = ko.utils.extend(options, bindingOptions);
             }
             // Define the tables columns.
@@ -93,7 +93,7 @@ define(["require", "exports", "jquery", "knockout", "knockout", "knockout.mappin
                             //Clear
                             //$(element).dataTable().fnClearTable();
                             // ** Redraw table **
-                            var dataTable = $(element).DataTable();
+                            var dataTable = $(element).dataTable();
                             setDataTableInstanceOnBinding(dataTable, binding.table);
                             // If the table contains data...
                             if (dataTable.fnGetData().length) {
