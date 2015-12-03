@@ -35,4 +35,4 @@ define(["require", "exports", "knockout", "./router", "text!./demo-application-h
     exports.viewModel = viewModel;
 });
 
-//# sourceMappingURL=../../../src/components/demo-application/demo-application.js.map
+//# sourceMappingURL=demo-application.js.map

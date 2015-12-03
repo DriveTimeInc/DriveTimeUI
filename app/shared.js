@@ -11,4 +11,4 @@ define(["require", "exports"], function (require, exports) {
     exports.logger = logger;
 });
 
-//# sourceMappingURL=../../src/app/shared.js.map
+//# sourceMappingURL=shared.js.map

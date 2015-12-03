@@ -18,4 +18,4 @@ define(["require", "exports", "components/debug/debug", "knockout", "knockout.pu
     ko.applyBindings({});
 });
 
-//# sourceMappingURL=../../src/app/startup.js.map
+//# sourceMappingURL=startup.js.map

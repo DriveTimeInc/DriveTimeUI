@@ -46,4 +46,4 @@ define(["require", "exports", "knockout", "text!./sprite-dump-html.html"], funct
     exports.viewModel = viewModel;
 });
 
-//# sourceMappingURL=../../../src/components/sprite-dump/sprite-dump.js.map
+//# sourceMappingURL=sprite-dump.js.map

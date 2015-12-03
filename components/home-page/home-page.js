@@ -13,4 +13,4 @@ define(["require", "exports", "knockout", "text!./home-page-html.html"], functio
     exports.ViewModel = ViewModel;
 });
 
-//# sourceMappingURL=../../../src/components/home-page/home-page.js.map
+//# sourceMappingURL=home-page.js.map

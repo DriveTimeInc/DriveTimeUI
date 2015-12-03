@@ -1,21 +1,23 @@
+/// <amd-dependency path="knockout" />
+/// <amd-dependency path="knockout.mapping" />
 /// <amd-dependency path="datatables" />
 /// <amd-dependency path="datatables-bootstrap3" />
 /// <amd-dependency path="datatables-responsive" />
 /// <amd-dependency path="datatables-tabletools" />
-define(["require", "exports", "jquery", "knockout", "datatables", "datatables-bootstrap3", "datatables-responsive", "datatables-tabletools"], function (require, exports, $, ko) {
+define(["require", "exports", "jquery", "knockout", "knockout", "knockout.mapping", "datatables", "datatables-bootstrap3", "datatables-responsive", "datatables-tabletools"], function (require, exports, $, ko) {
     var onInitialisingEventName = "ko_bindingHandlers_dataTable_onInitialising";
     var dataTablesInstanceDataKey = "ko_bindingHandlers_dataTable_Instance";
     ko.bindingHandlers["dataTable"] = {
         addOnInitListener: function (handler) {
-            /// <Summary>
-            /// Registers a event handler that fires when the Data Table is being initialised.
-            /// </Summary>
+            /**
+             * Registers a event handler that fires when the Data Table is being initialised.
+             */
             $(document).bind(onInitialisingEventName, handler);
         },
         removeOnInitListener: function (handler) {
-            /// <Summary>
-            /// Unregisters an event handler to the onInitialising event.
-            /// </Summary>
+            /**
+             * Unregisters an event handler to the onInitialising event.
+             */
             $(document).unbind(onInitialisingEventName, handler);
         },
         init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
@@ -29,8 +31,10 @@ define(["require", "exports", "jquery", "knockout", "datatables", "datatables-bo
             }
             // ** Initialise the DataTables options object with the data-bind settings **
             // Clone the options object found in the data bindings.  This object will form the base for the DataTable initialisation object.
-            if (null != binding.dtoptions) {
-                options = ko.utils.extend(options, binding.dtoptions);
+            var dtopts = binding["dtoptions"];
+            if (null != dtopts) {
+                var bindingOptions = ko.mapping.toJS(dtopts);
+                options = ko.utils.extend(options, bindingOptions);
             }
             // Define the tables columns.
             if (binding.columns && binding.columns.length) {
@@ -86,11 +90,10 @@ define(["require", "exports", "jquery", "knockout", "datatables", "datatables-bo
                         // Subscribe to the dataSource observable.  This callback will fire whenever items are added to 
                         // and removed from the data source.
                         binding.dataSource.subscribe(function (newItems) {
-                            console.warn('new datatable items', newItems);
                             //Clear
                             //$(element).dataTable().fnClearTable();
                             // ** Redraw table **
-                            var dataTable = $(element).dataTable();
+                            var dataTable = $(element).DataTable();
                             setDataTableInstanceOnBinding(dataTable, binding.table);
                             // If the table contains data...
                             if (dataTable.fnGetData().length) {
@@ -164,9 +167,22 @@ define(["require", "exports", "jquery", "knockout", "datatables", "datatables-bo
             // Fire the onInitialising event to allow the options object to be globally edited before the dataTables table is initialised.  This
             // gives third party javascript the ability to apply any additional settings to the dataTable before load.
             $(document).trigger(onInitialisingEventName, { options: options });
-            var dataTable = $(element).dataTable(options);
+            var dataTable = $(element).DataTable(options);
             setDataTableInstanceOnBinding(dataTable, binding.table);
             setDataTableInstance(element, dataTable);
+            // If we got an order binding option wire it up to our DataTable
+            if (null != dtopts) {
+                var sortOption = dtopts["order"];
+                if ((null != sortOption) && (ko.isObservable(sortOption))) {
+                    $(element).on('order.dt', function () {
+                        var newOrder = dataTable.order();
+                        sortOption(newOrder);
+                    });
+                    sortOption.subscribe(function (newValue) {
+                        dataTable.order(newValue);
+                    });
+                }
+            }
             // Apply bindings to those elements that were marked for binding.  See comments above.
             $(element).find(".ko-bind").each(function (e, childElement) {
                 ko.applyBindingsToNode(childElement, null, bindingContext);
@@ -285,21 +301,15 @@ define(["require", "exports", "jquery", "knockout", "datatables", "datatables-bo
             };
         };
         this.utils = new function () {
+            /**
+             * Intercepts a function with another function.  The original function is passed to the new function
+             * as the last argument of it's parameter list, and must be executed within the new function for the interception
+             * to be complete.
+             * @param { function } fnToIntercept - The old function to intercept.
+             * @param { function } fnToExecute - The new function to be executed.
+             * @returns A proxy function that performs the interception.  Execute this function like you would execute the fnToExecute function.
+             */
             this.intercept = function (fnToIntercept, fnToExecute) {
-                /// <summary>
-                /// Intercepts a function with another function.  The original function is passed to the new function
-                /// as the last argument of it's parameter list, and must be executed within the new function for the interception
-                /// to be complete.
-                /// </summary>
-                /// <param name="fnToIntercept" type="Function">
-                ///     The old function to intercept.
-                /// </param>
-                /// <param name="fnToExecute" type="Function">
-                ///     The new function to be executed.
-                /// </param>
-                /// <returns>
-                ///     A proxy function that performs the interception.  Execute this function like you would execute the fnToExecute function.
-                /// </returns>
                 fnToIntercept = fnToIntercept || (function () { });
                 return function () {
                     var newArguments = [];
@@ -312,4 +322,4 @@ define(["require", "exports", "jquery", "knockout", "datatables", "datatables-bo
     };
 });
 
-//# sourceMappingURL=../../src/bindingHandlers/dataTable.js.map
+//# sourceMappingURL=dataTable.js.map

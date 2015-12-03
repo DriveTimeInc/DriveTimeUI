@@ -6,4 +6,4 @@ define(["require", "exports", "knockout"], function (require, exports, ko) {
     };
 });
 
-//# sourceMappingURL=../../src/bindingHandlers/debugger.js.map
+//# sourceMappingURL=debugger.js.map

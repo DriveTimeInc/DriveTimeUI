@@ -10,4 +10,4 @@ define(["require", "exports", "text!./references-page-html.html"], function (req
     exports.viewModel = viewModel;
 });
 
-//# sourceMappingURL=../../../src/components/references-page/references-page.js.map
+//# sourceMappingURL=references-page.js.map

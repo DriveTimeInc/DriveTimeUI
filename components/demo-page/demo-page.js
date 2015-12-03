@@ -61,4 +61,4 @@ define(["require", "exports", "jquery", "knockout", "text!./demo-page-html.html"
     exports.viewModel = viewModel;
 });
 
-//# sourceMappingURL=../../../src/components/demo-page/demo-page.js.map
+//# sourceMappingURL=demo-page.js.map

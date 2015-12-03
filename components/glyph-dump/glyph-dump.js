@@ -48,4 +48,4 @@ define(["require", "exports", "knockout", "text!./glyph-dump-html.html"], functi
     exports.viewModel = ViewModel;
 });
 
-//# sourceMappingURL=../../../src/components/glyph-dump/glyph-dump.js.map
+//# sourceMappingURL=glyph-dump.js.map

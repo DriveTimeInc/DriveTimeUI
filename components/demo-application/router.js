@@ -70,4 +70,4 @@ define(["require", "exports", "knockout", "crossroads", "hasher"], function (req
     return router;
 });
 
-//# sourceMappingURL=../../../src/components/demo-application/router.js.map
+//# sourceMappingURL=router.js.map

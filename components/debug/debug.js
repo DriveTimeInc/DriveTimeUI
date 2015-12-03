@@ -12,4 +12,4 @@ define(["require", "exports", "knockout", "text!./debug-html.html"], function (r
     exports.viewModel = viewModel;
 });
 
-//# sourceMappingURL=../../../src/components/debug/debug.js.map
+//# sourceMappingURL=debug.js.map
