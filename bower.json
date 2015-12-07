@@ -1,6 +1,6 @@
 {
     "name": "drivetime-ui",
-    "version": "v1.0.34",
+    "version": "v1.0.35",
     "private": true,
     "dependencies": {
         "components-bootstrap": "~3.1.1",
@@ -15,7 +15,6 @@
         "moment": "~2.8.3",
         "knockout.punches": "~0.5.0",
         "knockout-validation": "~1.0.2",
-        "knockout.mapping": "https://github.com/SteveSanderson/knockout.mapping/archive/2.4.1.zip",
         "datatables": "1.10.7",
         "datatables-bootstrap3": "https://github.com/mike-dempster/Datatables-Bootstrap3/archive/0.2.0.zip",
         "datatables-responsive": "1.0.6",

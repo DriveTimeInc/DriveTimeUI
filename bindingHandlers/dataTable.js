@@ -1,10 +1,9 @@
 /// <amd-dependency path="knockout" />
-/// <amd-dependency path="knockout.mapping" />
 /// <amd-dependency path="datatables" />
 /// <amd-dependency path="datatables-bootstrap3" />
 /// <amd-dependency path="datatables-responsive" />
 /// <amd-dependency path="datatables-tabletools" />
-define(["require", "exports", "jquery", "knockout", "knockout", "knockout.mapping", "datatables", "datatables-bootstrap3", "datatables-responsive", "datatables-tabletools"], function (require, exports, $, ko) {
+define(["require", "exports", "jquery", "knockout", "knockout", "datatables", "datatables-bootstrap3", "datatables-responsive", "datatables-tabletools"], function (require, exports, $, ko) {
     var onInitialisingEventName = "ko_bindingHandlers_dataTable_onInitialising";
     var dataTablesInstanceDataKey = "ko_bindingHandlers_dataTable_Instance";
     ko.bindingHandlers["dataTable"] = {
@@ -32,8 +31,9 @@ define(["require", "exports", "jquery", "knockout", "knockout", "knockout.mappin
             // ** Initialise the DataTables options object with the data-bind settings **
             // Clone the options object found in the data bindings.  This object will form the base for the DataTable initialisation object.
             var dtopts = binding["dtoptions"];
+            var bindingOptions = {};
             if (null != dtopts) {
-                var bindingOptions = ko.toJS(dtopts);
+                bindingOptions = ko.toJS(dtopts);
                 options = ko.utils.extend(options, bindingOptions);
             }
             // Define the tables columns.
